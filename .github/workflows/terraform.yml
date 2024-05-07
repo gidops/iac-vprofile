@@ -52,7 +52,7 @@ jobs:
 
        - name: terraform plan
          id: plan
-         run: terraform plan -no-color
+         run: terraform plan -d
 
        - name: terraform plan status 
          if: steps.plan.outcome == 'failure'
