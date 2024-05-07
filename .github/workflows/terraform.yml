@@ -18,7 +18,7 @@ env:
  AWS_ACCESS_KEY_ID: $ {{ secrets.AWS_ACCESS_KEY_ID }}
  AWS_SECRET_ACCESS_KEY: $ {{ secrets.AWS_SECRET_ACCESS_KEY }}
  BUCKET_TF_STATE: $ {{ secrets.BUCKET_TF_STATE }}
- AWS_REGION: us-east-1
+ AWS_REGION: us-east-2
  EKS_CLUSTER: vprofile-eks
 
 jobs:
@@ -68,7 +68,7 @@ jobs:
          with:
            aws-access-key-id: $ "{{secrets.AWS_ACCESS_KEY_ID}}"
            aws-secret-access-key: $ "{{ secrets.AWS_SECRET_ACCESS_KEY}}"
-           aws-region: us-east-1a
+           aws-region: us-east-2
            
 
        - name: get kube config file
