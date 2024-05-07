@@ -60,7 +60,7 @@ jobs:
 
        - name: terraform apply
          id: apple
-         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+         #if: github.ref == 'refs/heads/main' && github.event_name == 'push'
          run: terraform apply -destroy
 
        - name: configure aws credentials
@@ -73,9 +73,9 @@ jobs:
 
        - name: get kube config file
          id: getconfig 
-         if: steps.apple.outcome == 'success'
+         if: steps.getconfig.outcome == 'success'
          run: aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.EKS_CLUSTER }}
-
+     
 
        - name: install ingress controller
          if: steps.apple.outcome == 'success' && steps.getconfig.outcome == 'success'
