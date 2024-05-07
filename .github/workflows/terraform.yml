@@ -59,7 +59,7 @@ jobs:
          id: plan
          run: |
            terraform init
-           terraform plan
+           terraform plan -no-color
        
 
        - name: terraform plan status 
