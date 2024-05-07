@@ -50,16 +50,10 @@ jobs:
          id: validate
          run: terraform validate
 
-       - name: Set up Terraform
-         uses: hashicorp/setup-terraform@v1
-         with:
-           terraform_version: latest
-       
        - name: terraform plan
          id: plan
-         run: |
-           terraform init
-           terraform plan -no-color
+         run: terraform plan -no-color -input=false -out planfile
+         continue-on-error: true
        
 
        - name: terraform plan status 
@@ -69,7 +63,7 @@ jobs:
        - name: terraform apply
          id: apply
          if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-         run: terraform apply 
+         run: terraform apply  -auto-approve -input=false -parallelism=1 planfile
        
 
        - name: configure aws credentials
